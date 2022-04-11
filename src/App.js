@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login, Register } from "./components/index";
+import { Navbar, Login, Register, Profile } from "./components/index";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -7,6 +7,8 @@ function App() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [routines, setRoutines] = useState([]);
+  const [profile, setProfile] = useState("");
 
   useEffect(() => {});
 
@@ -50,6 +52,20 @@ function App() {
                 token={token}
                 setToken={setToken}
                 setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          ></Route>
+
+          <Route
+            path="/my routines"
+            element={
+              <Profile
+                token={token}
+                setToken={setToken}
+                profile={profile}
+                setProfile={setProfile}
+                routines={routines}
+                setRoutines={setRoutines}
               />
             }
           ></Route>
