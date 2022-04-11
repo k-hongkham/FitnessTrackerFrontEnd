@@ -1,5 +1,6 @@
 import React from "react";
-import { login } from "../api/index";
+import { fetchLogin } from "../api/index";
+import { Link } from "react-router-dom";
 
 const Login = ({
   username,
