@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login } from "./components/index";
+import { Navbar, Login, Register } from "./components/index";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -38,6 +38,21 @@ function App() {
               setIsLoggedIn={setIsLoggedIn}
             />
           ) : null} */}
+
+          <Route
+            path="/Register"
+            element={
+              <Register
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                token={token}
+                setToken={setToken}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          ></Route>
         </Routes>
       </div>
     </Router>
