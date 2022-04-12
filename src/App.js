@@ -6,6 +6,7 @@ import {
   Profile,
   Routines,
   Activities,
+  Logout,
 } from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -22,6 +23,18 @@ function App() {
   return (
     <div className="Main_Page_Container">
       <Navbar />
+      {isLoggedIn ? (
+        <Route
+          element={
+            <Logout
+              token={token}
+              setToken={setToken}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
+      ) : null}
       <Routes>
         {/* <h1>Welcome to Fitness Tracker</h1> */}
         <Route
@@ -38,14 +51,7 @@ function App() {
             />
           }
         ></Route>
-        {/* {isLoggedIn ? (
-            <Logout
-              token={token}
-              setToken={setToken}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          ) : null} */}
+
         <Route path="routines" element={<Routines />}></Route>
 
         <Route path="activities" element={<Activities />}></Route>

@@ -14,9 +14,9 @@ const Login = ({
 }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userProfile = await fetchLogin(e.target[0].value, e.target[1].value),
-      token = await userProfile.data.token;
-    let localToken = localStorage.setItem("token", token);
+    const userProfile = await fetchLogin(username, password);
+
+    localStorage.setItem("token", userProfile.data.token);
     const getToken = localStorage.getItem("token");
     setToken(getToken);
     setIsLoggedIn(true);
