@@ -10,10 +10,8 @@ export const fetchRegisterUser = async (username, password) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
-          username,
-          password,
-        },
+        username,
+        password,
       }),
     });
     const data = await response.json();

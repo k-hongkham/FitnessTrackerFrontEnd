@@ -14,14 +14,14 @@ const Register = ({
 }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userProfile = await fetchRegisterUser(
-      e.target[0].value,
-      e.target[1].value
-    );
-    let storageToken = await userProfile.data.token;
+    const result = await fetchRegisterUser(username, password);
+    console.log("THE TOKEN", result.token);
+    // let storageToken = await userProfile.data.token;
 
-    localStorage.setItem("token", storageToken);
-    setToken(localStorage.getItem("token"));
+    localStorage.setItem("token", result.token);
+    const myToken = localStorage.getItem("token");
+    console.log("THE TOKEN", myToken);
+    setToken(myToken);
   };
   const handleUsername = (e) => {
     setUsername(e.target.value);
