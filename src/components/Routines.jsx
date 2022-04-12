@@ -19,8 +19,8 @@ const Routines = () => {
       {routines.map((routine, idx) => {
         return (
           <div className="routine_data">
-            <h3>Name: {routine.name}</h3>
-            <h2>Goal: {routine.goal}</h2>
+            <h2>Name: {routine.name}</h2>
+            <h3>Goal: {routine.goal}</h3>
           </div>
         );
       })}

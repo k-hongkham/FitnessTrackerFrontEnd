@@ -17,7 +17,6 @@ const Navbar = () => {
         <span> </span>
         <Link to="register">Register</Link>
         <span> </span>
-        <h1>NAVBAR</h1>
       </nav>
     </div>
   );
