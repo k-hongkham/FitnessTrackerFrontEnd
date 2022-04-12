@@ -41,18 +41,19 @@ function App() {
           }
         ></Route>
 
-        {isLoggedIn ? (
-          <Route
-            element={
-              <Logout
-                token={token}
-                setToken={setToken}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          ></Route>
-        ) : null}
+        {/* {isLoggedIn ? ( */}
+        <Route
+          path="/logout"
+          element={
+            <Logout
+              token={token}
+              setToken={setToken}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
+        {/* ) : null} */}
 
         <Route path="routines" element={<Routines />}></Route>
 
