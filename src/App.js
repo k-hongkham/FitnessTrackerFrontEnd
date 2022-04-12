@@ -23,18 +23,7 @@ function App() {
   return (
     <div className="Main_Page_Container">
       <Navbar />
-      {isLoggedIn ? (
-        <Route
-          element={
-            <Logout
-              token={token}
-              setToken={setToken}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          }
-        ></Route>
-      ) : null}
+
       <Routes>
         {/* <h1>Welcome to Fitness Tracker</h1> */}
         <Route
@@ -51,6 +40,19 @@ function App() {
             />
           }
         ></Route>
+
+        {isLoggedIn ? (
+          <Route
+            element={
+              <Logout
+                token={token}
+                setToken={setToken}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          ></Route>
+        ) : null}
 
         <Route path="routines" element={<Routines />}></Route>
 

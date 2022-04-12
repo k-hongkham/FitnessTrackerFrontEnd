@@ -16,7 +16,8 @@ const Login = ({
     e.preventDefault();
     const userProfile = await fetchLogin(username, password);
 
-    localStorage.setItem("token", userProfile.data.token);
+    console.log("USERPROFILE TOKEN", userProfile);
+    localStorage.setItem("token", userProfile.token);
     const getToken = localStorage.getItem("token");
     setToken(getToken);
     setIsLoggedIn(true);

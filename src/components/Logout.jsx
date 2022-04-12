@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 
 const Logout = ({ setIsLoggedIn, isLoggedIn, token, setToken }) => {
   const logoutUser = () => {
