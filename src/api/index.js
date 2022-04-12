@@ -60,8 +60,9 @@ export const fetchUserProfile = async (token) => {
 };
 
 export const fetchAllRoutines = async (username) => {
+  console.log("username", username);
   try {
-    const response = await fetch(`${base_url}/users/${username}/routines`, {
+    const response = await fetch(`${base_url}/routines`, {
       headers: {
         "Content-Type": "application/json",
       },

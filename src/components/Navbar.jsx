@@ -1,21 +1,21 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div id="nav-bar-container">
       <nav>
-        <NavLink to="home">Home</NavLink>
+        <Link to="home">Home</Link>
         <span> </span>
-        <NavLink to="routines">Routines</NavLink>
+        <Link to="routines">Routines</Link>
         <span> </span>
-        <NavLink to="my routines">My Routines</NavLink>
+        <Link to="my routines">My Routines</Link>
         <span> </span>
-        <NavLink to="activities">Activities</NavLink>
+        <Link to="activities">Activities</Link>
         <span> </span>
-        <NavLink to="login">Login</NavLink>
+        <Link to="login">Login</Link>
         <span> </span>
-        <NavLink to="register">Register</NavLink>
+        <Link to="register">Register</Link>
         <span> </span>
         <h1>NAVBAR</h1>
       </nav>
