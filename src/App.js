@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login, Register, Profile, Routines } from "./components";
+import {
+  Navbar,
+  Login,
+  Register,
+  Profile,
+  Routines,
+  Activities,
+} from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -40,6 +47,8 @@ function App() {
             />
           ) : null} */}
         <Route path="routines" element={<Routines />}></Route>
+
+        <Route path="activities" element={<Activities />}></Route>
 
         <Route
           path="register"
