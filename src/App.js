@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login, Register, Profile } from "./components/index";
+import { Navbar, Login, Register, Profile, Routines } from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -13,26 +13,25 @@ function App() {
   useEffect(() => {});
 
   return (
-    <Router>
-      <div className="Main_Page_Container">
-        <Navbar />
-        <Routes>
-          {/* <h1>Welcome to Fitness Tracker</h1> */}
-          <Route
-            path="/Login"
-            element={
-              <Login
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                token={token}
-                setToken={setToken}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          ></Route>
-          {/* {isLoggedIn ? (
+    <div className="Main_Page_Container">
+      <Navbar />
+      <Routes>
+        {/* <h1>Welcome to Fitness Tracker</h1> */}
+        <Route
+          path="/login"
+          element={
+            <Login
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              token={token}
+              setToken={setToken}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
+        {/* {isLoggedIn ? (
             <Logout
               token={token}
               setToken={setToken}
@@ -40,23 +39,24 @@ function App() {
               setIsLoggedIn={setIsLoggedIn}
             />
           ) : null} */}
+        <Route path="routines" element={<Routines />}></Route>
 
-          <Route
-            path="/Register"
-            element={
-              <Register
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                token={token}
-                setToken={setToken}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          ></Route>
+        <Route
+          path="register"
+          element={
+            <Register
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              token={token}
+              setToken={setToken}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
 
-          <Route
+        {/* <Route
             path="/my routines"
             element={
               <Profile
@@ -68,10 +68,9 @@ function App() {
                 setRoutines={setRoutines}
               />
             }
-          ></Route>
-        </Routes>
-      </div>
-    </Router>
+          ></Route> */}
+      </Routes>
+    </div>
   );
 }
 
