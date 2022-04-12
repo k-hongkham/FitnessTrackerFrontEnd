@@ -58,3 +58,17 @@ export const fetchUserProfile = async (token) => {
     console.error(error);
   }
 };
+
+export const fetchAllRoutines = async (username) => {
+  try {
+    const response = await fetch(`${base_url}/users/${username}/routines`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
