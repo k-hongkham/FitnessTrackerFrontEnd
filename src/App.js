@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="Main_Page_Container">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
 
       <Routes>
         {/* <h1>Welcome to Fitness Tracker</h1> */}
@@ -60,7 +60,7 @@ function App() {
         <Route path="activities" element={<Activities />}></Route>
 
         <Route
-          path="register"
+          path="/register"
           element={
             <Register
               username={username}

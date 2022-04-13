@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { fetchRegisterUser } from "../api";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({
   username,
@@ -12,6 +13,8 @@ const Register = ({
   hasUser,
   setHasUser,
 }) => {
+  let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await fetchRegisterUser(username, password);
@@ -44,7 +47,14 @@ const Register = ({
           onChange={handlePassword}
         ></input>
         <button type="submit">Create User</button>
-        <Link to="./login">Already have a login?</Link>
+        <button
+          to="login"
+          onClick={(e) => {
+            navigate("/login");
+          }}
+        >
+          Already have a login?
+        </button>
       </form>
     </div>
   );
