@@ -73,7 +73,17 @@ function App() {
             />
           }
         ></Route>
-        <Route path="/myroutines" element={<Profile />}></Route>
+        <Route
+          path="/myroutines"
+          element={
+            <Profile
+              username={username}
+              setUsername={setUsername}
+              token={token}
+              setToken={setToken}
+            />
+          }
+        ></Route>
       </Routes>
     </div>
   );

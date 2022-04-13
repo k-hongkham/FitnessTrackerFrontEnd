@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { createRoutine } from "../api";
 
-const CreateUserRoutine = ({ token, setToken }) => {
+const CreateUserRoutine = () => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const [routines, setRoutines] = useState([]);
 
-  const handleSubmit =
-    ((e) => {
-      e.preventDefault();
-      const getRoutineDetails = async (e) => {
-        const routineDetails = await createRoutine(name, goal, isPublic);
-        setRoutines(routineDetails);
-      };
-      getRoutineDetails();
-    },
-    []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const getRoutineDetails = async (e) => {
+      const routineDetails = await createRoutine(name, goal, isPublic);
+      setRoutines(routineDetails);
+    };
+    getRoutineDetails();
+  };
   //   const creatingRoutine = async () => {
   //     await createRoutine(routineDetails, localStorage.getItem("token"));
   //   };
