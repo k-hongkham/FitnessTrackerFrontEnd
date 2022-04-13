@@ -1,5 +1,5 @@
 import React, { userState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { CreateUserRoutine } from "./index";
 
 const Profile = ({
@@ -12,7 +12,11 @@ const Profile = ({
   routines,
   setRoutines,
 }) => {
-  return <div></div>;
+  return (
+    <div>
+      <Route element={CreateUserRoutine} />
+    </div>
+  );
 };
 
 export default Profile;
