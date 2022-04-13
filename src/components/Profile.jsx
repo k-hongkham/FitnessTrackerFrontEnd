@@ -12,11 +12,7 @@ const Profile = ({
   routines,
   setRoutines,
 }) => {
-  return (
-    <div>
-      <CreateUserRoutine></CreateUserRoutine>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Profile;
