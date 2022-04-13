@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { fetchRegisterUser } from "../api";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Register = ({
@@ -40,11 +39,14 @@ const Register = ({
           type="text"
           placeholder="username"
           onChange={handleUsername}
+          required
         ></input>
         <input
           type="text"
           placeholder="password"
           onChange={handlePassword}
+          required
+          minLength={8}
         ></input>
         <button type="submit">Create User</button>
         <button
