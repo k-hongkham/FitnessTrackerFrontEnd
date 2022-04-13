@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Logout } from "./";
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => {
   return (
     <div id="nav-bar-container">
       <nav>
@@ -17,6 +18,7 @@ const Navbar = () => {
         <span> </span>
         <Link to="register">Register</Link>
         <span> </span>
+        {isLoggedIn ? <Logout /> : null}
       </nav>
     </div>
   );

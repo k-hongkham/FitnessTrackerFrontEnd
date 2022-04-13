@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Login, Register, Profile, Routines } from "./components";
+import {
+  Navbar,
+  Login,
+  Register,
+  Profile,
+  Routines,
+  Activities,
+  Logout,
+} from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -14,7 +22,8 @@ function App() {
 
   return (
     <div className="Main_Page_Container">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
+
       <Routes>
         {/* <h1>Welcome to Fitness Tracker</h1> */}
         <Route
@@ -31,18 +40,27 @@ function App() {
             />
           }
         ></Route>
-        {/* {isLoggedIn ? (
+
+        {/* {isLoggedIn ? ( */}
+        <Route
+          path="/logout"
+          element={
             <Logout
               token={token}
               setToken={setToken}
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
             />
-          ) : null} */}
+          }
+        ></Route>
+        {/* ) : null} */}
+
         <Route path="routines" element={<Routines />}></Route>
 
+        <Route path="activities" element={<Activities />}></Route>
+
         <Route
-          path="register"
+          path="/register"
           element={
             <Register
               username={username}

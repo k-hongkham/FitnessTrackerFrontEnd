@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { fetchRegisterUser } from "../api";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({
   username,
@@ -12,16 +12,18 @@ const Register = ({
   hasUser,
   setHasUser,
 }) => {
+  let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userProfile = await fetchRegisterUser(
-      e.target[0].value,
-      e.target[1].value
-    );
-    let storageToken = await userProfile.data.token;
+    const result = await fetchRegisterUser(username, password);
+    console.log("THE TOKEN", result.token);
+    // let storageToken = await userProfile.data.token;
 
-    localStorage.setItem("token", storageToken);
-    setToken(localStorage.getItem("token"));
+    localStorage.setItem("token", result.token);
+    const myToken = localStorage.getItem("token");
+    console.log("THE TOKEN", myToken);
+    setToken(myToken);
   };
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -37,14 +39,24 @@ const Register = ({
           type="text"
           placeholder="username"
           onChange={handleUsername}
+          required
         ></input>
         <input
           type="text"
           placeholder="password"
           onChange={handlePassword}
+          required
+          minLength={8}
         ></input>
         <button type="submit">Create User</button>
-        <Link to="./login">Already have a login?</Link>
+        <button
+          to="login"
+          onClick={(e) => {
+            navigate("/login");
+          }}
+        >
+          Already have a login?
+        </button>
       </form>
     </div>
   );

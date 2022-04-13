@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchLogin } from "../api/index";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({
   username,
@@ -12,11 +12,14 @@ const Login = ({
   isLoggedIn,
   setIsLoggedIn,
 }) => {
+  let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userProfile = await fetchLogin(e.target[0].value, e.target[1].value),
-      token = await userProfile.data.token;
-    let localToken = localStorage.setItem("token", token);
+    const userProfile = await fetchLogin(username, password);
+
+    console.log("USERPROFILE TOKEN", userProfile);
+    localStorage.setItem("token", userProfile.token);
     const getToken = localStorage.getItem("token");
     setToken(getToken);
     setIsLoggedIn(true);
@@ -37,14 +40,24 @@ const Login = ({
           type="text"
           placeholder="username"
           onChange={handleUsername}
+          required
         ></input>
         <input
           type="text"
           placeholder="password"
           onChange={handlePassword}
+          required
+          minLength={8}
         ></input>
         <button type="submit">Submit</button>
-        <Link to="./register">Make New Account</Link>
+        <button
+          to="register"
+          onClick={(e) => {
+            navigate("/register");
+          }}
+        >
+          Make New Account
+        </button>
       </form>
     </div>
   );
