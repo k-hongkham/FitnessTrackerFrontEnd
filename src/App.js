@@ -13,12 +13,23 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
   const [profile, setProfile] = useState("");
 
-  useEffect(() => {});
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    const localUser = localStorage.getItem("username");
+
+    if (localToken) {
+      setIsLoggedIn(true);
+      setToken(localToken);
+      if (localUser) {
+        setUsername(localUser);
+      }
+    }
+  }, []);
 
   return (
     <div className="Main_Page_Container">
@@ -73,20 +84,17 @@ function App() {
             />
           }
         ></Route>
-
-        {/* <Route
-            path="/my routines"
-            element={
-              <Profile
-                token={token}
-                setToken={setToken}
-                profile={profile}
-                setProfile={setProfile}
-                routines={routines}
-                setRoutines={setRoutines}
-              />
-            }
-          ></Route> */}
+        <Route
+          path="/myroutines"
+          element={
+            <Profile
+              username={username}
+              setUsername={setUsername}
+              token={token}
+              setToken={setToken}
+            />
+          }
+        ></Route>
       </Routes>
     </div>
   );

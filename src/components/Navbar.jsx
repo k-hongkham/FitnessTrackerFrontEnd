@@ -10,7 +10,7 @@ const Navbar = ({ isLoggedIn }) => {
         <span> </span>
         <Link to="routines">Routines</Link>
         <span> </span>
-        <Link to="my routines">My Routines</Link>
+        <Link to="myroutines">My Routines</Link>
         <span> </span>
         <Link to="activities">Activities</Link>
         <span> </span>

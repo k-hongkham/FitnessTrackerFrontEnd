@@ -21,6 +21,7 @@ const Register = ({
     // let storageToken = await userProfile.data.token;
 
     localStorage.setItem("token", result.token);
+    localStorage.setItem("username", username);
     const myToken = localStorage.getItem("token");
     console.log("THE TOKEN", myToken);
     setToken(myToken);

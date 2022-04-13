@@ -82,3 +82,40 @@ export const fetchAllActivities = async () => {
     console.error(error);
   }
 };
+
+export const createRoutine = async (name, goal, isPublic, token) => {
+  try {
+    const response = await fetch(`${base_url}/routines`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        goal,
+        isPublic,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchMyRoutines = async (username, token) => {
+  try {
+    const response = await fetch(`${base_url}/users/${username}/routines`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    console.log("data-api", data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
