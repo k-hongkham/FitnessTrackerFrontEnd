@@ -4,19 +4,23 @@ import { createRoutine } from "../api";
 const CreateUserRoutine = ({ token, setToken }) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+  const [routines, setRoutines] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const routineDetails = {
-      name,
-      goal,
-    };
-
-    const creatingRoutine = async () => {
-      await createRoutine(routineDetails, localStorage.getItem("token"));
-    };
-    creatingRoutine();
-  };
+  const handleSubmit =
+    ((e) => {
+      e.preventDefault();
+      const getRoutineDetails = async (e) => {
+        const routineDetails = await createRoutine(name, goal, isPublic);
+        setRoutines(routineDetails);
+      };
+      getRoutineDetails();
+    },
+    []);
+  //   const creatingRoutine = async () => {
+  //     await createRoutine(routineDetails, localStorage.getItem("token"));
+  //   };
+  //   creatingRoutine();
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -27,6 +31,7 @@ const CreateUserRoutine = ({ token, setToken }) => {
 
   return (
     <div>
+      <h1>CREATING ROUTINES</h1>
       <form onSubmit={handleSubmit}>
         <input
           value={name}

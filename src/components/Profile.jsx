@@ -1,20 +1,23 @@
-import React, { userState, useEffect } from "react";
-import { Link, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { fetchMyRoutines } from "../api";
 import { CreateUserRoutine } from "./index";
 
-const Profile = ({
-  token,
-  setToken,
-  profile,
-  setProfile,
-  deletingPosts,
-  postings,
-  routines,
-  setRoutines,
-}) => {
+const Profile = ({ username, token }) => {
+  const [routines, setRoutines] = useState([]);
+
+  // useEffect(() => {
+  //   if (username.username) {
+  //     const showRoutines = async () => {
+  //       const response = await fetchMyRoutines(username.username, token);
+  //       setRoutines(response);
+  //     };
+  //     showRoutines();
+  //   }
+  // }, [username, token]);
   return (
     <div>
-      <Route element={CreateUserRoutine} />
+      <h1>PROFILEEEE</h1>
+      <CreateUserRoutine />
     </div>
   );
 };
