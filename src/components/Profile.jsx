@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { fetchMyRoutines } from "../api";
+import { fetchMyRoutines, fetchUserProfile } from "../api";
 import { CreateUserRoutine } from "./index";
 
 const Profile = ({ username, token }) => {
   const [routines, setRoutines] = useState([]);
 
   useEffect(() => {
-    if (username.username) {
+    if (username) {
       const showRoutines = async () => {
-        const response = await fetchMyRoutines(username.username, token);
+        const response = await fetchMyRoutines(username, token);
+        console.log("response", response);
+
         setRoutines(response);
       };
       showRoutines();
@@ -17,7 +19,7 @@ const Profile = ({ username, token }) => {
   return (
     <div>
       <h1>PROFILEEEE</h1>
-      <CreateUserRoutine />
+      <CreateUserRoutine token={token} />
 
       {routines.map((routine, idx) => {
         return (

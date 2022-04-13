@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createRoutine } from "../api";
 
-const CreateUserRoutine = () => {
+const CreateUserRoutine = ({ token }) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(false);
@@ -10,7 +10,7 @@ const CreateUserRoutine = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const getRoutineDetails = async (e) => {
-      const routineDetails = await createRoutine(name, goal, isPublic);
+      const routineDetails = await createRoutine(name, goal, isPublic, token);
       setRoutines(routineDetails);
     };
     getRoutineDetails();

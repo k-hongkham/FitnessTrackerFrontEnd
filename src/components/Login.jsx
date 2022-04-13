@@ -20,6 +20,8 @@ const Login = ({
 
     console.log("USERPROFILE TOKEN", userProfile);
     localStorage.setItem("token", userProfile.token);
+    localStorage.setItem("username", username);
+
     const getToken = localStorage.getItem("token");
     setToken(getToken);
     setIsLoggedIn(true);
