@@ -1,5 +1,6 @@
 import React, { userState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CreateUserRoutine } from "./index";
 
 const Profile = ({
   token,
@@ -11,7 +12,11 @@ const Profile = ({
   routines,
   setRoutines,
 }) => {
-  return <div></div>;
+  return (
+    <div>
+      <CreateUserRoutine></CreateUserRoutine>
+    </div>
+  );
 };
 
 export default Profile;

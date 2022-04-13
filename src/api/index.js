@@ -82,3 +82,20 @@ export const fetchAllActivities = async () => {
     console.error(error);
   }
 };
+
+export const createRoutine = async () => {
+  try {
+    const response = await fetch(`${base_url}/routines`, {
+      method: "POST",
+      body: JSON.stringify({
+        name: "Long Cardio Routine",
+        goal: "To get your heart pumping!",
+        isPublic: true,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

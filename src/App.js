@@ -73,20 +73,19 @@ function App() {
             />
           }
         ></Route>
-
-        {/* <Route
-            path="/my routines"
-            element={
-              <Profile
-                token={token}
-                setToken={setToken}
-                profile={profile}
-                setProfile={setProfile}
-                routines={routines}
-                setRoutines={setRoutines}
-              />
-            }
-          ></Route> */}
+        <Route
+          path="/my routines"
+          element={
+            <Profile
+              token={token}
+              setToken={setToken}
+              profile={profile}
+              setProfile={setProfile}
+              routines={routines}
+              setRoutines={setRoutines}
+            />
+          }
+        ></Route>
       </Routes>
     </div>
   );
