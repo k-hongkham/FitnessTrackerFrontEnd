@@ -4,17 +4,16 @@ import { deleteUserRoutine } from "../api";
 const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
   const handleDelete = (e) => {
     e.preventDefault();
-
-    const result = async (e) => {
-      const deletingRoutine = await deleteUserRoutine(routine.id, token);
+    const deletingRoutine = async (e) => {
+      const response = await deleteUserRoutine(routine.id, token);
       const newArray = [...routines];
       const filteredRemainingRoutines = newArray.filter((el) => {
-        return filteredRemainingRoutines;
+        return;
       });
 
       console.log("filteredRemainingRoutines", filteredRemainingRoutines);
 
-      setRoutines(filteredRemainingRoutines);
+      setRoutines([...filteredRemainingRoutines]);
     };
     deletingRoutine();
   };
