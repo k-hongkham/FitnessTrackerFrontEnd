@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchMyRoutines, fetchUserProfile } from "../api";
-import { CreateUserRoutine, EditSingleRoutine } from "./index";
+import { CreateUserRoutine, EditSingleRoutine, DeleteRoutine } from "./index";
 
 const Profile = ({ username, token }) => {
   const [routines, setRoutines] = useState([]);
@@ -42,6 +42,12 @@ const Profile = ({ username, token }) => {
                     : null}
                 </div>
                 <EditSingleRoutine
+                  routine={routine}
+                  routines={routines}
+                  setRoutines={setRoutines}
+                  token={token}
+                />
+                <DeleteRoutine
                   routine={routine}
                   routines={routines}
                   setRoutines={setRoutines}
