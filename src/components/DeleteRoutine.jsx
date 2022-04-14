@@ -2,32 +2,27 @@ import React, { useState } from "react";
 import { deleteUserRoutine } from "../api";
 
 const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
-  const deletingRoutine = async (e) => {
-    const result = await deleteUserRoutine(routine.id, token);
-    const newArray = [...routines];
-    const filteredRemainingRoutines = newArray.filter((el) => {
-      if (el.id !== routine.id) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+  const handleDelete = (e) => {
+    e.preventDefault();
 
-    console.log("filteredRemainingRoutines", filteredRemainingRoutines);
+    const result = async (e) => {
+      const deletingRoutine = await deleteUserRoutine(routine.id, token);
+      const newArray = [...routines];
+      const filteredRemainingRoutines = newArray.filter((el) => {
+        return filteredRemainingRoutines;
+      });
 
-    setRoutines(filteredRemainingRoutines);
+      console.log("filteredRemainingRoutines", filteredRemainingRoutines);
+
+      setRoutines(filteredRemainingRoutines);
+    };
+    deletingRoutine();
   };
 
   return (
     <div>
-      <form>
-        <button
-          value={routine.id}
-          type="submit"
-          onClick={(e) => {
-            deletingRoutine(e);
-          }}
-        >
+      <form onSubmit={handleDelete}>
+        <button value={routine.id} type="submit">
           Delete Routine
         </button>
       </form>
