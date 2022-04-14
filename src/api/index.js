@@ -120,7 +120,13 @@ export const fetchMyRoutines = async (username, token) => {
   }
 };
 
-export const updateUserRoutine = async (name, goal, isPublic, routineId) => {
+export const updateUserRoutine = async (
+  name,
+  goal,
+  isPublic,
+  routineId,
+  token
+) => {
   try {
     const response = await fetch(`${base_url}/routines/${routineId}`, {
       method: "PATCH",
