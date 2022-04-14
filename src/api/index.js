@@ -113,7 +113,7 @@ export const fetchMyRoutines = async (username, token) => {
       },
     });
     const data = await response.json();
-    console.log("data-api", data);
+
     return data;
   } catch (error) {
     console.error(error);
@@ -140,6 +140,9 @@ export const updateUserRoutine = async (
         isPublic,
       }),
     });
+    const data = await response.json();
+
+    return data;
   } catch (error) {
     console.error(error);
   }
