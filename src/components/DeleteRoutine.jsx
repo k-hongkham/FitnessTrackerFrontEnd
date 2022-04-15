@@ -8,7 +8,11 @@ const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
       const response = await deleteUserRoutine(routine.id, token);
       const newArray = [...routines];
       const filteredRemainingRoutines = newArray.filter((el) => {
-        return;
+        if (newArray.length) {
+          return true;
+        } else {
+          return false;
+        }
       });
 
       console.log("filteredRemainingRoutines", filteredRemainingRoutines);

@@ -157,7 +157,34 @@ export const deleteUserRoutine = async (routineId, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    return response;
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addActivityToRoutine = async (
+  activityId,
+  routineId,
+  count,
+  duration
+) => {
+  try {
+    const response = await fetch(
+      `${base_url}/routines/${routineId}/activities`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          activityId,
+          count,
+          duration,
+        }),
+      }
+    );
+    const data = await response.json();
+
+    return data;
   } catch (error) {
     console.error(error);
   }

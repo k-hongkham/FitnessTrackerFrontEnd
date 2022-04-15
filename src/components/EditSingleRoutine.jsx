@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateUserRoutine } from "../api";
+import { updateUserRoutine, addActivityToRoutine } from "../api";
 
 const EditSingleRoutine = ({ routine, routines, setRoutines, token }) => {
   const [name, setName] = useState("");
@@ -16,7 +16,6 @@ const EditSingleRoutine = ({ routine, routines, setRoutines, token }) => {
         routine.id,
         token
       );
-      console.log("response", response);
 
       const newRoutineArr = [...routines];
       const filteredNewRoutineArr = newRoutineArr.filter((el) => {
@@ -27,9 +26,7 @@ const EditSingleRoutine = ({ routine, routines, setRoutines, token }) => {
         }
       });
 
-      console.log("filteredNewRoutineArr ", filteredNewRoutineArr);
       setRoutines([...filteredNewRoutineArr, response]);
-      console.log("routine.id", routine.id);
     };
     updatingUserRous();
   };
