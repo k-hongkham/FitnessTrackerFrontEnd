@@ -113,7 +113,77 @@ export const fetchMyRoutines = async (username, token) => {
       },
     });
     const data = await response.json();
-    console.log("data-api", data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateUserRoutine = async (
+  name,
+  goal,
+  isPublic,
+  routineId,
+  token
+) => {
+  try {
+    const response = await fetch(`${base_url}/routines/${routineId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        goal,
+        isPublic,
+      }),
+    });
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteUserRoutine = async (routineId, token) => {
+  try {
+    const response = await fetch(`${base_url}/routines/${routineId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addActivityToRoutine = async (
+  activityId,
+  routineId,
+  count,
+  duration
+) => {
+  try {
+    const response = await fetch(
+      `${base_url}/routines/${routineId}/activities`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          activityId,
+          count,
+          duration,
+        }),
+      }
+    );
+    const data = await response.json();
+
     return data;
   } catch (error) {
     console.error(error);

@@ -10,3 +10,6 @@ export { default as Routines } from "./Routines";
 export { default as Activities } from "./Activities";
 export { default as Logout } from "./Logout";
 export { default as CreateUserRoutine } from "./CreateUserRoutine";
+export { default as EditSingleRoutine } from "./EditSingleRoutine";
+export { default as DeleteRoutine } from "./DeleteRoutine";
+export { default as CreateUserActivity } from "./CreateUserActivity";

@@ -17,7 +17,7 @@ const Register = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await fetchRegisterUser(username, password);
-    console.log("THE TOKEN", result.token);
+
     // let storageToken = await userProfile.data.token;
 
     localStorage.setItem("token", result.token);
