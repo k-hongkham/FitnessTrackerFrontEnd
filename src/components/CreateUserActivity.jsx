@@ -1,18 +1,31 @@
-import React, { useState } from "react";
-import { addActivityToRoutine, fetchMyRoutines } from "../api";
+import React, { useState, useEffect } from "react";
+import {
+  addActivityToRoutine,
+  fetchMyRoutines,
+  fetchAllActivities,
+} from "../api";
 import Activities from "./Activities";
 
 const CreateUserActivity = ({ routine, token }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [acts, setActs] = useState([]);
-  const [activities, allActivities] = useState("");
+  const [activities, setActivities] = useState([]);
   const [addingActs, setAddingActs] = useState({
     id: "",
     name: "",
     count: "",
     duration: "",
   });
+
+  useEffect(() => {
+    async function getActivities() {
+      const allActivities = await fetchAllActivities();
+      setActivities(allActivities);
+    }
+
+    getActivities();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -20,12 +20,16 @@ const Profile = ({ username, token }) => {
       };
       showRoutines();
     }
-  }, [username, token]);
+  }, [username, token, setRoutines]);
 
   return (
     <div>
       <h1>PROFILEEEE</h1>
-      <CreateUserRoutine token={token} />
+      <CreateUserRoutine
+        token={token}
+        routines={routines}
+        setRoutines={setRoutines}
+      />
 
       {routines.length
         ? routines.map((routine, idx) => {
