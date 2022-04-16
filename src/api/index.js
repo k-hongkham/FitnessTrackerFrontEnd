@@ -175,6 +175,9 @@ export const addActivityToRoutine = async (
       `${base_url}/routines/${routineId}/activities`,
       {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           activityId,
           count,

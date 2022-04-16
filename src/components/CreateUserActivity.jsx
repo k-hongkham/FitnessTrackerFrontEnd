@@ -4,19 +4,14 @@ import {
   fetchMyRoutines,
   fetchAllActivities,
 } from "../api";
-import Activities from "./Activities";
 
 const CreateUserActivity = ({ routine, token }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
-  const [acts, setActs] = useState([]);
   const [activities, setActivities] = useState([]);
-  const [addingActs, setAddingActs] = useState({
-    id: "",
-    name: "",
-    count: "",
-    duration: "",
-  });
+  const [activityId, setActivityId] = useState(0);
+  const [success, setSuccess] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     async function getActivities() {
@@ -31,12 +26,21 @@ const CreateUserActivity = ({ routine, token }) => {
     e.preventDefault();
 
     const response = await addActivityToRoutine(
+      activityId,
       routine.id,
-      activities.id,
       count,
-      duration,
-      token
+      duration
     );
+
+    setSubmitted(true);
+
+    if (response.id) {
+      setCount("");
+      setDuration("");
+      setSuccess(true);
+    } else {
+      setSuccess(false);
+    }
   };
 
   const handleCount = (e) => {
@@ -46,8 +50,8 @@ const CreateUserActivity = ({ routine, token }) => {
     setDuration(e.target.value);
   };
 
-  const handleAddingActs = (e) => {
-    setAddingActs({ ...addingActs, id: e.target.value });
+  const handleAddingActivities = (e) => {
+    setActivityId(e.target.value);
   };
 
   return (
@@ -55,16 +59,14 @@ const CreateUserActivity = ({ routine, token }) => {
       <h1>ADDING ACTIVITIES</h1>
 
       <form onSubmit={handleSubmit}>
-        <select value={addingActs.id} onChange={handleAddingActs}>
+        <select value={activityId} onChange={handleAddingActivities}>
           <option value="default">Choose an Activity</option>
-          {acts
-            ? acts.map((activity, idx) => {
+          {activities.length > 0
+            ? activities.map((activity, idx) => {
                 return (
-                  <div>
-                    <option key={`activity_to_add: ${idx}`} value={activity}>
-                      {`${activity.name}`}
-                    </option>
-                  </div>
+                  <option key={`activity_to_add: ${idx}`} value={activity.id}>
+                    {activity.name}
+                  </option>
                 );
               })
             : null}
@@ -83,6 +85,16 @@ const CreateUserActivity = ({ routine, token }) => {
         ></input>
         <button type="submit">Add Activity</button>
       </form>
+
+      {submitted ? (
+        <>
+          {success ? (
+            <p>Successfully Added Activity</p>
+          ) : (
+            <p>Problem Adding Activity</p>
+          )}
+        </>
+      ) : null}
     </div>
   );
 };
