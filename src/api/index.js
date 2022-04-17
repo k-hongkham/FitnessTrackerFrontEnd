@@ -242,6 +242,10 @@ export const createActivity = async (name, description, token) => {
   try {
     const response = await fetch(`${base_url}/activities`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name,
         description,

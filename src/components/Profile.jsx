@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchMyRoutines, fetchUserProfile } from "../api";
+import { fetchMyRoutines } from "../api";
 import {
   CreateUserRoutine,
   EditSingleRoutine,
@@ -9,8 +9,6 @@ import {
 
 const Profile = ({ username, token }) => {
   const [routines, setRoutines] = useState([]);
-
-  const [name, setName] = useState("");
 
   useEffect(() => {
     if (username) {
