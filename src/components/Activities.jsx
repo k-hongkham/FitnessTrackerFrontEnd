@@ -2,7 +2,7 @@ import React from "react";
 import { fetchAllActivities } from "../api";
 import { useEffect, useState } from "react";
 
-const Activities = () => {
+const Activities = ({ token }) => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {

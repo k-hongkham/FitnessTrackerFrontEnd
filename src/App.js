@@ -70,7 +70,7 @@ function App() {
 
         <Route path="routines" element={<Routines />}></Route>
 
-        <Route path="activities" element={<Activities />}></Route>
+        <Route path="activities" element={<Activities token={token} />}></Route>
 
         <Route
           path="/register"

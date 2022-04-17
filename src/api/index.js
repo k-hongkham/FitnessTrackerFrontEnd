@@ -237,3 +237,20 @@ export const deleteActivity = async (routineActivityId, token) => {
     console.error(error);
   }
 };
+
+export const createActivity = async (name, description, token) => {
+  try {
+    const response = await fetch(`${base_url}/activities`, {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        description,
+      }),
+    });
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
