@@ -50,6 +50,7 @@ const Profile = ({ username, token }) => {
                         </div>
                       ))
                     : null}
+
                   <CreateUserActivity routine={routine} token={token} />
                 </div>
 

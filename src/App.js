@@ -7,6 +7,7 @@ import {
   Routines,
   Activities,
   Logout,
+  Home,
 } from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -37,6 +38,7 @@ function App() {
 
       <Routes>
         {/* <h1>Welcome to Fitness Tracker</h1> */}
+        <Route path="/home" element={<Home />} />
         <Route
           path="/login"
           element={

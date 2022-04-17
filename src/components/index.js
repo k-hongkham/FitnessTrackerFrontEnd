@@ -13,3 +13,4 @@ export { default as CreateUserRoutine } from "./CreateUserRoutine";
 export { default as EditSingleRoutine } from "./EditSingleRoutine";
 export { default as DeleteRoutine } from "./DeleteRoutine";
 export { default as CreateUserActivity } from "./CreateUserActivity";
+export { default as Home } from "./Home";
