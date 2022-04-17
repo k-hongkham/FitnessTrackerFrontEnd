@@ -23,7 +23,7 @@ const Register = ({
     localStorage.setItem("token", result.token);
     localStorage.setItem("username", username);
     const myToken = localStorage.getItem("token");
-    console.log("THE TOKEN", myToken);
+
     setToken(myToken);
   };
   const handleUsername = (e) => {

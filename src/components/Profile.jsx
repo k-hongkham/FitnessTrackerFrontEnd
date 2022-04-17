@@ -21,7 +21,7 @@ const Profile = ({ username, token }) => {
   }, [username, token, setRoutines]);
 
   return (
-    <div>
+    <div id="profile">
       <h1>PROFILEEEE</h1>
       <CreateUserRoutine
         token={token}

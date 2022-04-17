@@ -15,8 +15,6 @@ const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
         }
       });
 
-      console.log("filteredRemainingRoutines", filteredRemainingRoutines);
-
       setRoutines([...filteredRemainingRoutines]);
     };
     deletingRoutine();
