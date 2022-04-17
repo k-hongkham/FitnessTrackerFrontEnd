@@ -17,15 +17,23 @@ const Activities = ({ token }) => {
 
   const handleCreateActivity = (e) => {
     e.preventDefault();
-    const getActivityDetails = async (e) => {
-      const activityDetails = await createActivity(name, description, token);
-      const newActivityArr = [activityDetails, ...activities];
+    if (name === "" || description === "") {
+      alert("ALREADY EXISTS");
+      return;
+    }
+    if (activities.filter((el) => el.name === name).length > 0) {
+      alert("ALREADY EXISTS");
+      return;
+    } else {
+      const getActivityDetails = async (e) => {
+        const activityDetails = await createActivity(name, description, token);
+        const newActivityArr = [activityDetails, ...activities];
 
-      setActivities(newActivityArr);
-    };
-    getActivityDetails();
+        setActivities(newActivityArr);
+      };
+      getActivityDetails();
+    }
   };
-
   const handleName = (e) => {
     setName(e.target.value);
   };
