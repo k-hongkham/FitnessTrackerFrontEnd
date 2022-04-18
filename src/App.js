@@ -7,16 +7,15 @@ import {
   Routines,
   Activities,
   Logout,
+  Home,
 } from "./components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [routines, setRoutines] = useState([]);
-  const [profile, setProfile] = useState("");
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
@@ -37,6 +36,7 @@ function App() {
 
       <Routes>
         {/* <h1>Welcome to Fitness Tracker</h1> */}
+        <Route path="/home" element={<Home />} />
         <Route
           path="/login"
           element={
@@ -52,7 +52,6 @@ function App() {
           }
         ></Route>
 
-        {/* {isLoggedIn ? ( */}
         <Route
           path="/logout"
           element={
@@ -64,11 +63,10 @@ function App() {
             />
           }
         ></Route>
-        {/* ) : null} */}
 
         <Route path="routines" element={<Routines />}></Route>
 
-        <Route path="activities" element={<Activities />}></Route>
+        <Route path="activities" element={<Activities token={token} />}></Route>
 
         <Route
           path="/register"

@@ -192,3 +192,69 @@ export const addActivityToRoutine = async (
     console.error(error);
   }
 };
+
+export const updateCountDuration = async (
+  routineActivityId,
+  count,
+  duration,
+  token
+) => {
+  try {
+    const response = await fetch(
+      `${base_url}/api/routine_activities/${routineActivityId}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          count: 2,
+          duration: 30,
+        }),
+      }
+    );
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteActivity = async (routineActivityId, token) => {
+  try {
+    const response = await fetch(
+      `${base_url}/routine_activities/${routineActivityId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createActivity = async (name, description, token) => {
+  try {
+    const response = await fetch(`${base_url}/activities`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        description,
+      }),
+    });
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

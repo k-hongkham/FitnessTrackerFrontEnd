@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateUserRoutine, addActivityToRoutine } from "../api";
+import { updateUserRoutine } from "../api";
 
 const EditSingleRoutine = ({ routine, routines, setRoutines, token }) => {
   const [name, setName] = useState("");

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
   addActivityToRoutine,
-  fetchMyRoutines,
   fetchAllActivities,
+  updateCountDuration,
 } from "../api";
 
 const CreateUserActivity = ({ routine, token }) => {
@@ -54,6 +54,16 @@ const CreateUserActivity = ({ routine, token }) => {
     setActivityId(e.target.value);
   };
 
+  const handleUpdatingCountDuration = async (e) => {
+    e.preventDefault();
+    await updateCountDuration(
+      activities.routineActivityId,
+      count,
+      duration,
+      token
+    );
+  };
+
   return (
     <div>
       <h1>ADDING ACTIVITIES</h1>
@@ -70,6 +80,9 @@ const CreateUserActivity = ({ routine, token }) => {
                 );
               })
             : null}
+          <form onSubmit={handleUpdatingCountDuration}>
+            <button type="submit">Update Count and Duration</button>
+          </form>
         </select>
         <input
           value={count}
@@ -84,6 +97,9 @@ const CreateUserActivity = ({ routine, token }) => {
           onChange={handleDuration}
         ></input>
         <button type="submit">Add Activity</button>
+        <form onSubmit={handleUpdatingCountDuration}>
+          <button type="submit">Update Count and Duration</button>
+        </form>
       </form>
 
       {submitted ? (
@@ -91,7 +107,7 @@ const CreateUserActivity = ({ routine, token }) => {
           {success ? (
             <p>Successfully Added Activity</p>
           ) : (
-            <p>Problem Adding Activity</p>
+            <p>Problem Adding Activity, add count, and duration</p>
           )}
         </>
       ) : null}
