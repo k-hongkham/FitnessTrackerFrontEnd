@@ -3,15 +3,22 @@ import {
   addActivityToRoutine,
   fetchAllActivities,
   updateCountDuration,
+  updateActivity,
+  deleteRoutineActivity,
+  fetchMyRoutines,
+  getPublicRoutines,
 } from "../api";
 
-const CreateUserActivity = ({ routine, token }) => {
+const CreateUserActivity = ({ routine, setRoutines, token }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [activities, setActivities] = useState([]);
   const [activityId, setActivityId] = useState(0);
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     async function getActivities() {
@@ -56,12 +63,23 @@ const CreateUserActivity = ({ routine, token }) => {
 
   const handleUpdatingCountDuration = async (e) => {
     e.preventDefault();
-    await updateCountDuration(
+    const result = await updateActivity(
+      token,
+      activities.id,
+      name,
+      description
+    );
+    const response = await updateCountDuration(
       activities.routineActivityId,
       count,
       duration,
       token
     );
+    const updatedActivity = await fetchAllActivities();
+    const updatedRoutines = await fetchMyRoutines(username, token);
+    const renderRoutines = await getPublicRoutines();
+    setActivities(updateActivity);
+    setRoutines(updatedRoutines);
   };
 
   return (
@@ -98,6 +116,18 @@ const CreateUserActivity = ({ routine, token }) => {
         ></input>
         <button type="submit">Add Activity</button>
         <form onSubmit={handleUpdatingCountDuration}>
+          <input
+            value={count}
+            type="text"
+            placeholder="Count"
+            onChange={handleCount}
+          ></input>
+          <input
+            value={duration}
+            type="text"
+            placeholder="Duration"
+            onChange={handleDuration}
+          ></input>
           <button type="submit">Update Count and Duration</button>
         </form>
       </form>

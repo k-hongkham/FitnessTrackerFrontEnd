@@ -49,7 +49,11 @@ const Profile = ({ username, token }) => {
                       ))
                     : null}
 
-                  <CreateUserActivity routine={routine} token={token} />
+                  <CreateUserActivity
+                    routine={routine}
+                    setRoutines={setRoutines}
+                    token={token}
+                  />
                 </div>
 
                 <EditSingleRoutine
