@@ -59,7 +59,7 @@ const Activities = ({ token }) => {
           onChange={handleDescription}
         ></input>
 
-        <button type="submit">Create Routine</button>
+        <button type="submit">Create Activity</button>
         {activities.map((activity, idx) => {
           return (
             <div className="activity_data" key={`allActivities: ${idx}`}>
