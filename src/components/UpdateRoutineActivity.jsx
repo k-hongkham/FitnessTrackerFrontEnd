@@ -56,7 +56,7 @@ const UpdateRoutineActivity = ({ token, routine }) => {
             setActivityRoutine(e.target.value);
           }}
         >
-          <option value="default">Choose an Activity to Update</option>
+          
           {routine.activities.length > 0
             ? routine.activities.map((activity, idx) => {
                 return (

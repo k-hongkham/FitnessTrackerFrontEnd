@@ -9,9 +9,9 @@ import {
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
-import { UpdateRoutineActivity } from "./";
+import { UpdateRoutineActivity, DeleteActivity } from "./";
 
-const CreateUserActivity = ({ routine, token }) => {
+const CreateUserActivity = ({ routine, token, activity }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
@@ -26,7 +26,6 @@ const CreateUserActivity = ({ routine, token }) => {
   const [updateCount, setUpdateCount] = useState("");
   const [activityRoutine, setActivityRoutine] = useState(0);
 
-  console.log("what is this?", activityId);
   useEffect(() => {
     async function getActivities() {
       const allActivities = await fetchAllActivities();
@@ -38,8 +37,9 @@ const CreateUserActivity = ({ routine, token }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("what is this?", activityId);
     const response = await addActivityToRoutine(
-      activityId,
+      activity.id,
       routine.id,
       count,
       duration
@@ -70,10 +70,16 @@ const CreateUserActivity = ({ routine, token }) => {
 
   const handleUpdatingCountDuration = async (e) => {
     e.preventDefault();
-    const response = await updateActivity(token, activityId, name, description);
+    const response = await updateActivity(
+      token,
+      activity.id,
+      name,
+      description
+    );
+    console.log("UPDATECOUNT/DURATION", activity.routineActivityId);
 
     const result = await updateRoutineActivity(
-      activities.routineActivityId,
+      activity.routineActivityId,
       token,
       updateCount,
       updateDuration
@@ -134,7 +140,6 @@ const CreateUserActivity = ({ routine, token }) => {
             <select
               value={activityRoutine}
               onChange={(e) => {
-                console.log("onchange for selecting activity", activityId);
                 setActivityRoutine(e.target.value);
               }}
             >

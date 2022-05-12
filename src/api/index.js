@@ -277,7 +277,7 @@ export const updateActivity = async (token, activityId, name, description) => {
       }),
     });
     const data = await response.json();
-
+    console.log("token api", activityId);
     return data;
   } catch (error) {
     console.error(error);
