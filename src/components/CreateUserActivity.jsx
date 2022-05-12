@@ -78,7 +78,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
       name,
       description
     );
-    console.log("UPDATECOUNT/DURATION", activity.routineActivityId);
 
     const result = await updateRoutineActivity(
       activity.routineActivityId,
@@ -86,6 +85,7 @@ const CreateUserActivity = ({ routine, token, activity }) => {
       updateCount,
       updateDuration
     );
+    console.log("UPDATECOUNT/DURATION", activity.routineActivityId);
 
     if (result.id) {
       setCount("");
