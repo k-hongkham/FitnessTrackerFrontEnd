@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import {
   addActivityToRoutine,
   fetchAllActivities,
-  updateCountDuration,
   updateActivity,
-  deleteRoutineActivity,
   fetchMyRoutines,
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
-import { UpdateRoutineActivity, DeleteActivity } from "./";
+import { DeleteActivity } from "./";
 
-const CreateUserActivity = ({ routine, token, activity }) => {
+const UserActivities = ({ routine, token, activity }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
@@ -23,7 +21,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   const [description, setDescription] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState(0);
 
   useEffect(() => {
     async function getActivities() {
@@ -36,14 +33,13 @@ const CreateUserActivity = ({ routine, token, activity }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("what is this?", activityId);
     const response = await addActivityToRoutine(
-      activityId,
+      activity.id,
       routine.id,
       count,
       duration
     );
-    console.log("what activity?", activityId);
-    console.log("what routine?", routine.id);
 
     setSubmitted(true);
 
@@ -76,6 +72,7 @@ const CreateUserActivity = ({ routine, token, activity }) => {
       name,
       description
     );
+    console.log("UPDATECOUNT/DURATION", activity.routineActivityId);
 
     const result = await updateRoutineActivity(
       activity.routineActivityId,
@@ -110,9 +107,15 @@ const CreateUserActivity = ({ routine, token, activity }) => {
             {activities.length > 0
               ? activities.map((activity, idx) => {
                   return (
-                    <option key={`activity_to_add: ${idx}`} value={activity.id}>
-                      {activity.name}
-                    </option>
+                    <>
+                      <option
+                        key={`activity_to_add: ${idx}`}
+                        value={activity.id}
+                      >
+                        {activity.name}
+                      </option>
+                      <DeleteActivity />
+                    </>
                   );
                 })
               : null}
@@ -169,4 +172,4 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   );
 };
 
-export default CreateUserActivity;
+export default UserActivities;

@@ -15,7 +15,7 @@ const Routines = () => {
 
   return (
     <div id="routines_container">
-      <h1>ROUTINES</h1>
+      <h1>LIST OF AVAILABLE ROUTINES</h1>
       {routines.map((routine, idx) => {
         return (
           <div className="routine_data" key={`allRoutines: ${idx}`}>
