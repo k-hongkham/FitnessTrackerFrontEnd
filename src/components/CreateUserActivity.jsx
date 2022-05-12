@@ -9,7 +9,6 @@ import {
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
-import { UpdateRoutineActivity, DeleteActivity } from "./";
 
 const CreateUserActivity = ({ routine, token, activity }) => {
   const [count, setCount] = useState("");
@@ -131,29 +130,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
           ></input>
           <button type="submit">Add Activity</button>
         </form>
-      </div>
-      <div>
-        <>
-          <form onSubmit={handleUpdatingCountDuration}>
-            <input
-              value={updateCount}
-              type="text"
-              placeholder="New Count"
-              onChange={(e) => {
-                setUpdateCount(e.target.value);
-              }}
-            ></input>
-            <input
-              value={updateDuration}
-              type="text"
-              placeholder="New Duration"
-              onChange={(e) => {
-                setUpdateDuration(e.target.value);
-              }}
-            ></input>
-            <button type="submit">Update Count and Duration</button>
-          </form>
-        </>
       </div>
 
       {submitted ? (
