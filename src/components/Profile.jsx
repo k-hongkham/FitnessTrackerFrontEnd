@@ -53,13 +53,19 @@ const Profile = ({ username, token }) => {
                             <li>Count: {activity.count} </li>
                             <li>Duration: {activity.duration}</li>
                           </ul>
-                          {/* <CreateUserActivity
+                          <UpdateRoutineActivity
                             activity={activity}
                             routine={routine}
-                            setRoutines={setRoutines}
                             token={token}
-                          /> */}
-                          <DeleteActivity activity={activity} token={token} />
+                            setActivities={setActivities}
+                            setRoutines={setRoutines}
+                          />
+
+                          <DeleteActivity
+                            activity={activity}
+                            token={token}
+                            routine={routine}
+                          />
                         </div>
                       ))
                     : null}

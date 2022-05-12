@@ -1,7 +1,7 @@
 import React from "react";
 import { deleteRoutineActivity } from "../api";
 
-const DeleteActivity = (activity, token) => {
+const DeleteActivity = ({ activity, token }) => {
   const handleDeleteActivity = async (e) => {
     e.preventDefault();
     try {
@@ -9,6 +9,8 @@ const DeleteActivity = (activity, token) => {
         activity.routineActivityId,
         token
       );
+      console.log("DELETING", activity.routineActivityId);
+      console.log(" TOKEN", token);
     } catch (error) {
       return error;
     }
