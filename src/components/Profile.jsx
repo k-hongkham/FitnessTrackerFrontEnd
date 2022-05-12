@@ -5,10 +5,13 @@ import {
   EditSingleRoutine,
   DeleteRoutine,
   CreateUserActivity,
+  UpdateRoutineActivity,
+  DeleteActivity,
 } from "./index";
 
 const Profile = ({ username, token }) => {
   const [routines, setRoutines] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     if (username) {
@@ -45,11 +48,16 @@ const Profile = ({ username, token }) => {
                             <li>Count: {activity.count} </li>
                             <li>Duration: {activity.duration}</li>
                           </ul>
+                          <CreateUserActivity
+                            activity={activity}
+                            routine={routine}
+                            setRoutines={setRoutines}
+                            token={token}
+                          />
+                          <DeleteActivity activity={activity} token={token} />
                         </div>
                       ))
                     : null}
-
-                  <CreateUserActivity routine={routine} token={token} />
                 </div>
 
                 <EditSingleRoutine

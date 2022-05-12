@@ -10,9 +10,9 @@ const Navbar = ({ isLoggedIn }) => {
         <span> </span>
         <Link to="routines">Routines</Link>
         <span> </span>
-        <Link to="myroutines">My Routines</Link>
-        <span> </span>
         <Link to="activities">Activities</Link>
+        <span> </span>
+        <Link to="myroutines">My Routines</Link>
         <span> </span>
         <Link to="login">Login</Link>
         <span> </span>

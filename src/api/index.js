@@ -201,12 +201,16 @@ export const updateCountDuration = async (
 ) => {
   try {
     const response = await fetch(
-      `${base_url}/api/routine_activities/${routineActivityId}`,
+      `${base_url}/routine_activities/${routineActivityId}`,
       {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
-          count: 2,
-          duration: 30,
+          count,
+          duration,
         }),
       }
     );
@@ -256,5 +260,89 @@ export const createActivity = async (name, description, token) => {
     return data;
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const updateActivity = async (token, activityId, name, description) => {
+  try {
+    const response = await fetch(`${base_url}/activities/${activityId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        description,
+      }),
+    });
+    const data = await response.json();
+    console.log("token api", activityId);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateRoutineActivity = async (
+  routineActivityId,
+  token,
+  count,
+  duration
+) => {
+  try {
+    const response = await fetch(
+      `${base_url}/routine_activities/${routineActivityId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          count,
+          duration,
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log("UPDATECOUNT API", routineActivityId);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteRoutineActivity = async (routineActivityId, token) => {
+  try {
+    const response = await fetch(
+      `${base_url}/routine_activities/${routineActivityId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getPublicRoutines = async () => {
+  try {
+    const response = await fetch(`${base_url}/routines`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error;
   }
 };
