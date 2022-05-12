@@ -7,9 +7,9 @@ import {
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
-import { UpdateRoutineActivity, DeleteActivity } from "./";
+import { DeleteActivity } from "./";
 
-const CreateUserActivity = ({ routine, token, activity }) => {
+const UserActivities = ({ routine, token, activity }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
@@ -173,4 +173,4 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   );
 };
 
-export default CreateUserActivity;
+export default UserActivities;
