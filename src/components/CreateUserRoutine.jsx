@@ -17,10 +17,6 @@ const CreateUserRoutine = ({ token, routines, setRoutines }) => {
     };
     getRoutineDetails();
   };
-  //   const creatingRoutine = async () => {
-  //     await createRoutine(routineDetails, localStorage.getItem("token"));
-  //   };
-  //   creatingRoutine();
 
   const handleName = (e) => {
     setName(e.target.value);

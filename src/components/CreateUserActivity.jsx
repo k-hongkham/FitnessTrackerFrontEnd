@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   addActivityToRoutine,
   fetchAllActivities,
-  updateCountDuration,
   updateActivity,
-  deleteRoutineActivity,
   fetchMyRoutines,
   getPublicRoutines,
   updateRoutineActivity,
@@ -21,7 +19,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [username, setUsername] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
   const [activityRoutine, setActivityRoutine] = useState(0);
@@ -142,27 +139,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
       <div>
         <>
           <form onSubmit={handleUpdatingCountDuration}>
-            <select
-              value={activityRoutine}
-              onChange={(e) => {
-                setActivityRoutine(e.target.value);
-              }}
-            >
-              <option value="default">Choose an Activity to Update</option>
-              {routine.activities.length > 0
-                ? routine.activities.map((activity, idx) => {
-                    return (
-                      <option
-                        key={`activity_to_update: ${idx}`}
-                        value={activities.routineActivityId}
-                      >
-                        {activity.name}
-                      </option>
-                    );
-                  })
-                : null}
-            </select>
-
             <input
               value={updateCount}
               type="text"
