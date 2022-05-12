@@ -37,13 +37,14 @@ const CreateUserActivity = ({ routine, token, activity }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("what is this?", activityId);
     const response = await addActivityToRoutine(
-      activity.id,
+      activityId,
       routine.id,
       count,
       duration
     );
+    console.log("what activity?", activityId);
+    console.log("what routine?", routine.id);
 
     setSubmitted(true);
 
@@ -65,6 +66,7 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   };
 
   const handleAddingActivities = (e) => {
+    console.log("what's happening to activities", e.target.value);
     setActivityId(e.target.value);
   };
 

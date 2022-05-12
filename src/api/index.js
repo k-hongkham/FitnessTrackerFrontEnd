@@ -186,6 +186,7 @@ export const addActivityToRoutine = async (
       }
     );
     const data = await response.json();
+    console.log("ADD ACT TO ROU", data);
 
     return data;
   } catch (error) {
