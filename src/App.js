@@ -11,6 +11,7 @@ import {
 } from "./components";
 import { Routes, Route } from "react-router-dom";
 import AuthProvider from "./context/AuthContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [username, setUsername] = useState("");

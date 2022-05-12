@@ -1,6 +1,6 @@
 import React from "react";
 
-const Logout = ({ setIsLoggedIn, isLoggedIn, token, setToken }) => {
+const Logout = ({ setIsLoggedIn, setToken }) => {
   const logoutUser = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
@@ -13,7 +13,9 @@ const Logout = ({ setIsLoggedIn, isLoggedIn, token, setToken }) => {
         logoutUser();
       }}
     >
-      <button type="submit">Logout</button>
+      <button type="submit" className="btn btn-outline-danger btn-sm">
+        Logout
+      </button>
     </form>
   );
 };
