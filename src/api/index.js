@@ -277,6 +277,7 @@ export const updateActivity = async (token, activityId, name, description) => {
       }),
     });
     const data = await response.json();
+    console.log("UPDATEACTIVITY", activityId);
     return data;
   } catch (error) {
     console.error(error);
@@ -289,6 +290,7 @@ export const updateRoutineActivity = async (
   count,
   duration
 ) => {
+  console.log("DOES UPDATING ACTS WORK?", count, duration);
   try {
     const response = await fetch(
       `${base_url}/routine_activities/${routineActivityId}`,
@@ -305,6 +307,7 @@ export const updateRoutineActivity = async (
       }
     );
     const data = await response.json();
+    console.log("UPDATECOUNT", data);
     return data;
   } catch (error) {
     return error;
