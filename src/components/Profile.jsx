@@ -5,13 +5,11 @@ import {
   EditSingleRoutine,
   DeleteRoutine,
   CreateUserActivity,
-  UpdateRoutineActivity,
   DeleteActivity,
 } from "./index";
 
 const Profile = ({ username, token }) => {
   const [routines, setRoutines] = useState([]);
-  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     if (username) {
