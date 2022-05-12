@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { deleteUserRoutine } from "../api";
 
 const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {

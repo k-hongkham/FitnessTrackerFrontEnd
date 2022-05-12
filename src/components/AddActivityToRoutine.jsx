@@ -12,16 +12,9 @@ import { DeleteActivity } from "./";
 const AddActivityToRoutine = ({ routine, activity }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
-  const [userRoutines, setUserRoutines] = useState([]);
-  const [activities, setActivities] = useState([]);
   const [activityId, setActivityId] = useState(0);
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [updateDuration, setUpdateDuration] = useState("");
-  const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

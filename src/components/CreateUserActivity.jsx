@@ -21,7 +21,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [username, setUsername] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
   const [activityRoutine, setActivityRoutine] = useState(0);

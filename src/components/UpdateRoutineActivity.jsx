@@ -17,15 +17,12 @@ const UpdateRoutineActivity = ({
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
-  const [activityId, setActivityId] = useState(0);
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [username, setUsername] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState("");
 
   const handleUpdatingCountDuration = async (e) => {
     e.preventDefault();
