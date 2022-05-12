@@ -93,7 +93,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
       setSuccess(false);
     }
 
-    console.log("STARTING COUNT/DURATION UPDATE", activities.routineActivityId);
     const newActs = await fetchAllActivities();
     const newUserRous = await fetchMyRoutines();
     const newRous = await getPublicRoutines();
@@ -112,9 +111,15 @@ const CreateUserActivity = ({ routine, token, activity }) => {
             {activities.length > 0
               ? activities.map((activity, idx) => {
                   return (
-                    <option key={`activity_to_add: ${idx}`} value={activity.id}>
-                      {activity.name}
-                    </option>
+                    <>
+                      <option
+                        key={`activity_to_add: ${idx}`}
+                        value={activity.id}
+                      >
+                        {activity.name}
+                      </option>
+                      <DeleteActivity />
+                    </>
                   );
                 })
               : null}
