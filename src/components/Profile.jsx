@@ -6,6 +6,7 @@ import {
   DeleteRoutine,
   CreateUserActivity,
   UpdateRoutineActivity,
+  DeleteActivity,
 } from "./index";
 
 const Profile = ({ username, token }) => {
@@ -47,6 +48,7 @@ const Profile = ({ username, token }) => {
                             <li>Count: {activity.count} </li>
                             <li>Duration: {activity.duration}</li>
                           </ul>
+                          <DeleteActivity activity={activity} token={token} />
                         </div>
                       ))
                     : null}

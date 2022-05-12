@@ -16,7 +16,7 @@ const CreateUserActivity = ({ routine, token }) => {
   const [duration, setDuration] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
-  const [activityId, setActivityId] = useState("");
+  const [activityId, setActivityId] = useState(0);
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
@@ -24,8 +24,9 @@ const CreateUserActivity = ({ routine, token }) => {
   const [username, setUsername] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState("");
+  const [activityRoutine, setActivityRoutine] = useState(0);
 
+  console.log("what is this?", activityId);
   useEffect(() => {
     async function getActivities() {
       const allActivities = await fetchAllActivities();
@@ -69,22 +70,30 @@ const CreateUserActivity = ({ routine, token }) => {
 
   const handleUpdatingCountDuration = async (e) => {
     e.preventDefault();
-    console.log("STARTING COUNT/DURATION UPDATE", count);
     const response = await updateActivity(token, activityId, name, description);
 
-    // const result = await updateRoutineActivity(
-    //   activities.routineActivityId,
-    //   token,
-    //   updateCount,
-    //   updateDuration
-    // );
-    console.log("ATTEMPTING TO UPDATE", response);
-    // const newActs = await fetchAllActivities();
-    // const newUserRous = await fetchMyRoutines();
-    // const newRous = await getPublicRoutines();
-    // setActivities(newActs);
-    // // setRoutines(newRous);
-    // setUserRoutines(newUserRous);
+    const result = await updateRoutineActivity(
+      activities.routineActivityId,
+      token,
+      updateCount,
+      updateDuration
+    );
+
+    if (result.id) {
+      setCount("");
+      setDuration("");
+      setSuccess(true);
+    } else {
+      setSuccess(false);
+    }
+
+    console.log("STARTING COUNT/DURATION UPDATE", activities.routineActivityId);
+    const newActs = await fetchAllActivities();
+    const newUserRous = await fetchMyRoutines();
+    const newRous = await getPublicRoutines();
+    setActivities(newActs);
+    // setRoutines(newRous);
+    setUserRoutines(newUserRous);
   };
 
   return (
@@ -125,6 +134,7 @@ const CreateUserActivity = ({ routine, token }) => {
             <select
               value={activityRoutine}
               onChange={(e) => {
+                console.log("onchange for selecting activity", activityId);
                 setActivityRoutine(e.target.value);
               }}
             >
@@ -134,7 +144,7 @@ const CreateUserActivity = ({ routine, token }) => {
                     return (
                       <option
                         key={`activity_to_update: ${idx}`}
-                        value={activity.routineActivityId}
+                        value={activities.routineActivityId}
                       >
                         {activity.name}
                       </option>
