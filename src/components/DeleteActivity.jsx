@@ -9,8 +9,7 @@ const DeleteActivity = ({ activity, token }) => {
         activity.routineActivityId,
         token
       );
-      console.log("DELETING", activity.routineActivityId);
-      console.log(" TOKEN", token);
+
     } catch (error) {
       return error;
     }

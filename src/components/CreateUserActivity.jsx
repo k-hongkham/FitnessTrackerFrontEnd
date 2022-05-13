@@ -109,9 +109,15 @@ const CreateUserActivity = ({ routine, token, activity }) => {
             {activities.length > 0
               ? activities.map((activity, idx) => {
                   return (
-                    <option key={`activity_to_add: ${idx}`} value={activity.id}>
-                      {activity.name}
-                    </option>
+                    <>
+                      <option
+                        key={`activity_to_add: ${idx}`}
+                        value={activity.id}
+                      >
+                        {activity.name}
+                      </option>
+                      <DeleteActivity />
+                    </>
                   );
                 })
               : null}
