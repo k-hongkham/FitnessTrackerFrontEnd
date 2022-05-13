@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   addActivityToRoutine,
   fetchAllActivities,
@@ -7,6 +7,7 @@ import {
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
+import { DeleteActivity } from "./";
 
 const CreateUserActivity = ({ routine, token, activity }) => {
   const [count, setCount] = useState("");
