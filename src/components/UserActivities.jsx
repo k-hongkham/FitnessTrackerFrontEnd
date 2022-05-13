@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import {
   addActivityToRoutine,
   fetchAllActivities,
-  updateCountDuration,
   updateActivity,
-  deleteRoutineActivity,
   fetchMyRoutines,
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
+import { DeleteActivity } from "./";
 
-const CreateUserActivity = ({ routine, token, activity }) => {
+const UserActivities = ({ routine, token, activity }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const [userRoutines, setUserRoutines] = useState([]);
@@ -22,7 +21,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   const [description, setDescription] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState(0);
 
   useEffect(() => {
     async function getActivities() {
@@ -35,14 +33,13 @@ const CreateUserActivity = ({ routine, token, activity }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("what is this?", activityId);
     const response = await addActivityToRoutine(
-      activityId,
+      activity.id,
       routine.id,
       count,
       duration
     );
-    console.log("what activity?", activityId);
-    console.log("what routine?", routine.id);
 
     setSubmitted(true);
 
@@ -75,6 +72,7 @@ const CreateUserActivity = ({ routine, token, activity }) => {
       name,
       description
     );
+    console.log("UPDATECOUNT/DURATION", activity.routineActivityId);
 
     const result = await updateRoutineActivity(
       activity.routineActivityId,
@@ -137,6 +135,29 @@ const CreateUserActivity = ({ routine, token, activity }) => {
           <button type="submit">Add Activity</button>
         </form>
       </div>
+      <div>
+        <>
+          <form onSubmit={handleUpdatingCountDuration}>
+            <input
+              value={updateCount}
+              type="text"
+              placeholder="New Count"
+              onChange={(e) => {
+                setUpdateCount(e.target.value);
+              }}
+            ></input>
+            <input
+              value={updateDuration}
+              type="text"
+              placeholder="New Duration"
+              onChange={(e) => {
+                setUpdateDuration(e.target.value);
+              }}
+            ></input>
+            <button type="submit">Update Count and Duration</button>
+          </form>
+        </>
+      </div>
 
       {submitted ? (
         <>
@@ -151,4 +172,4 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   );
 };
 
-export default CreateUserActivity;
+export default UserActivities;

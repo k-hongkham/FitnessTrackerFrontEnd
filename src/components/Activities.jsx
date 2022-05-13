@@ -42,23 +42,34 @@ const Activities = ({ token }) => {
   };
 
   return (
-    <div>
-      <h1>Activities</h1>
+    <div className="row g-3">
+      <h1>LIST OF AVAILABLE ACTIVITIES</h1>
       <form onSubmit={handleCreateActivity}>
-        <input
-          value={name}
-          type="text"
-          placeholder="name"
-          onChange={handleName}
-        ></input>
-
-        <input
-          value={description}
-          type="text"
-          placeholder="goal"
-          onChange={handleDescription}
-        ></input>
-
+        <div className="col-sm-6">
+          <label for="activityName" className="visually-hidden">
+            Activity Name
+          </label>
+          <input
+            className="form-control"
+            value={name}
+            type="text"
+            placeholder="name"
+            onChange={handleName}
+          ></input>
+        </div>
+        <div></div>
+        <div className="col-sm-6">
+          <label for="activityDescription" className="visually-hidden">
+            Activity Description
+          </label>
+          <input
+            className="form-control"
+            value={description}
+            type="text"
+            placeholder="goal"
+            onChange={handleDescription}
+          ></input>
+        </div>
         <button type="submit">Create Activity</button>
         {activities.map((activity, idx) => {
           return (

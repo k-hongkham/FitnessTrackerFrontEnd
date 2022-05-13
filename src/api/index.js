@@ -186,6 +186,7 @@ export const addActivityToRoutine = async (
       }
     );
     const data = await response.json();
+    console.log("ADD ACT TO ROU", data);
 
     return data;
   } catch (error) {
@@ -325,7 +326,8 @@ export const deleteRoutineActivity = async (routineActivityId, token) => {
         },
       }
     );
-    const data = response.json();
+    const data = await response.json();
+    console.log("ATTEMPTING TO DELETE FROM API", token);
     return data;
   } catch (error) {
     return error;

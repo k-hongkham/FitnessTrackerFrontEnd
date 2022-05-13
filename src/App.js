@@ -10,7 +10,8 @@ import {
   Home,
 } from "./components";
 import { Routes, Route } from "react-router-dom";
-import AuthProvider from "./context/AuthContext";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -32,75 +33,70 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <div className="Main_Page_Container">
-        <Navbar isLoggedIn={isLoggedIn} />
+    <div className="Main_Page_Container">
+      <Navbar isLoggedIn={isLoggedIn} />
 
-        <Routes>
-          {/* <h1>Welcome to Fitness Tracker</h1> */}
-          <Route path="/home" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              <Login
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                token={token}
-                setToken={setToken}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          ></Route>
+      <Routes>
+        {/* <h1>Welcome to Fitness Tracker</h1> */}
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              token={token}
+              setToken={setToken}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
 
-          <Route
-            path="/logout"
-            element={
-              <Logout
-                token={token}
-                setToken={setToken}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          ></Route>
+        <Route
+          path="/logout"
+          element={
+            <Logout
+              token={token}
+              setToken={setToken}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
 
-          <Route path="routines" element={<Routines />}></Route>
+        <Route path="routines" element={<Routines />}></Route>
 
-          <Route
-            path="activities"
-            element={<Activities token={token} />}
-          ></Route>
+        <Route path="activities" element={<Activities token={token} />}></Route>
 
-          <Route
-            path="/register"
-            element={
-              <Register
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                token={token}
-                setToken={setToken}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          ></Route>
-          <Route
-            path="/myroutines"
-            element={
-              <Profile
-                username={username}
-                setUsername={setUsername}
-                token={token}
-                setToken={setToken}
-              />
-            }
-          ></Route>
-        </Routes>
-      </div>
-    </AuthProvider>
+        <Route
+          path="/register"
+          element={
+            <Register
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              token={token}
+              setToken={setToken}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        ></Route>
+        <Route
+          path="/myroutines"
+          element={
+            <Profile
+              username={username}
+              setUsername={setUsername}
+              token={token}
+              setToken={setToken}
+            />
+          }
+        ></Route>
+      </Routes>
+    </div>
   );
 }
 

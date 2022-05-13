@@ -2,47 +2,29 @@ import React, { useState, useEffect } from "react";
 import {
   addActivityToRoutine,
   fetchAllActivities,
-  updateCountDuration,
   updateActivity,
-  deleteRoutineActivity,
   fetchMyRoutines,
   getPublicRoutines,
   updateRoutineActivity,
 } from "../api";
+import { DeleteActivity } from "./";
 
-const CreateUserActivity = ({ routine, token, activity }) => {
+const AddActivityToRoutine = ({ routine, activity }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
-  const [userRoutines, setUserRoutines] = useState([]);
-  const [activities, setActivities] = useState([]);
   const [activityId, setActivityId] = useState(0);
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [updateDuration, setUpdateDuration] = useState("");
-  const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState(0);
-
-  useEffect(() => {
-    async function getActivities() {
-      const allActivities = await fetchAllActivities();
-      setActivities(allActivities);
-    }
-
-    getActivities();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("what is this?", activityId);
     const response = await addActivityToRoutine(
-      activityId,
+      activity.id,
       routine.id,
       count,
       duration
     );
-    console.log("what activity?", activityId);
-    console.log("what routine?", routine.id);
 
     setSubmitted(true);
 
@@ -67,38 +49,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
     setActivityId(e.target.value);
   };
 
-  const handleUpdatingCountDuration = async (e) => {
-    e.preventDefault();
-    const response = await updateActivity(
-      token,
-      activity.id,
-      name,
-      description
-    );
-
-    const result = await updateRoutineActivity(
-      activity.routineActivityId,
-      token,
-      updateCount,
-      updateDuration
-    );
-
-    if (result.id) {
-      setCount("");
-      setDuration("");
-      setSuccess(true);
-    } else {
-      setSuccess(false);
-    }
-
-    const newActs = await fetchAllActivities();
-    const newUserRous = await fetchMyRoutines();
-    const newRous = await getPublicRoutines();
-    setActivities(newActs);
-    // setRoutines(newRous);
-    setUserRoutines(newUserRous);
-  };
-
   return (
     <div>
       <h1>Add any existing activity to your routine</h1>
@@ -106,8 +56,8 @@ const CreateUserActivity = ({ routine, token, activity }) => {
         <form onSubmit={handleSubmit}>
           <select value={activityId} onChange={handleAddingActivities}>
             <option value="default">Choose an Activity</option>
-            {activities.length > 0
-              ? activities.map((activity, idx) => {
+            {routine.activities && routine.activities.length > 0
+              ? routine.activities.map((activity, idx) => {
                   return (
                     <>
                       <option
@@ -137,18 +87,8 @@ const CreateUserActivity = ({ routine, token, activity }) => {
           <button type="submit">Add Activity</button>
         </form>
       </div>
-
-      {submitted ? (
-        <>
-          {success ? (
-            <p>Successfully Added Activity</p>
-          ) : (
-            <p>Problem Adding Activity, add count, and duration</p>
-          )}
-        </>
-      ) : null}
     </div>
   );
 };
 
-export default CreateUserActivity;
+export default AddActivityToRoutine;

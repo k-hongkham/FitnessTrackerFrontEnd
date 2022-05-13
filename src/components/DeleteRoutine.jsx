@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { deleteUserRoutine } from "../api";
+import React from "react";
+import { deleteUserRoutine, fetchMyRoutines } from "../api";
 
 const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
   const handleDelete = (e) => {
@@ -8,7 +8,7 @@ const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
       const response = await deleteUserRoutine(routine.id, token);
       const newArray = [...routines];
       const filteredRemainingRoutines = newArray.filter((el) => {
-        if (newArray.length) {
+        if (el.id !== routine.id) {
           return true;
         } else {
           return false;
@@ -18,6 +18,7 @@ const DeleteRoutine = ({ routine, routines, setRoutines, token }) => {
       setRoutines([...filteredRemainingRoutines]);
     };
     deletingRoutine();
+    fetchMyRoutines();
   };
 
   return (

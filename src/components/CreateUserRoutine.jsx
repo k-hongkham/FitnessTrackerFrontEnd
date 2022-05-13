@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createRoutine } from "../api";
+import { createRoutine, fetchMyRoutines } from "../api";
 
 const CreateUserRoutine = ({ token, routines, setRoutines }) => {
   const [name, setName] = useState("");
@@ -16,11 +16,8 @@ const CreateUserRoutine = ({ token, routines, setRoutines }) => {
       setRoutines(newArr);
     };
     getRoutineDetails();
+    fetchMyRoutines();
   };
-  //   const creatingRoutine = async () => {
-  //     await createRoutine(routineDetails, localStorage.getItem("token"));
-  //   };
-  //   creatingRoutine();
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -31,7 +28,7 @@ const CreateUserRoutine = ({ token, routines, setRoutines }) => {
 
   return (
     <div>
-      <h1>CREATING ROUTINES</h1>
+      <h1>Create routines to start your workouts</h1>
       <form onSubmit={handleSubmit}>
         <input
           value={name}

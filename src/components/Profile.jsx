@@ -25,7 +25,7 @@ const Profile = ({ username, token }) => {
 
   return (
     <div id="profile">
-      <h1>PROFILEEEE</h1>
+      <h1>WELCOME TO YOUR PROFILE {username}!</h1>
       <CreateUserRoutine
         token={token}
         routines={routines}
@@ -38,6 +38,11 @@ const Profile = ({ username, token }) => {
               <div className="my_routines" key={`allUserRoutines: ${idx}`}>
                 <h2>Name: {routine.name}</h2>
                 <h3>Goal: {routine.goal}</h3>
+                <CreateUserActivity
+                  routine={routine}
+                  setRoutines={setRoutines}
+                  token={token}
+                />
                 <div className="my_routine_activities">
                   {routine.activities && routine.activities.length
                     ? routine.activities.map((activity, idx) => (
@@ -48,13 +53,21 @@ const Profile = ({ username, token }) => {
                             <li>Count: {activity.count} </li>
                             <li>Duration: {activity.duration}</li>
                           </ul>
-                          <CreateUserActivity
+                          <UpdateRoutineActivity
                             activity={activity}
                             routine={routine}
-                            setRoutines={setRoutines}
                             token={token}
+                            setActivities={setActivities}
+                            setRoutines={setRoutines}
                           />
-                          <DeleteActivity activity={activity} token={token} />
+
+                          <DeleteActivity
+                            activity={activity}
+                            token={token}
+                            routine={routine}
+                            routines={routines}
+                            setRoutines={setRoutines}
+                          />
                         </div>
                       ))
                     : null}
