@@ -65,6 +65,8 @@ const Profile = ({ username, token }) => {
                             activity={activity}
                             token={token}
                             routine={routine}
+                            routines={routines}
+                            setRoutines={setRoutines}
                           />
                         </div>
                       ))

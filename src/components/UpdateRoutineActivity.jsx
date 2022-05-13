@@ -39,7 +39,6 @@ const UpdateRoutineActivity = ({
       updateCount,
       updateDuration
     );
-    console.log("UPDATECOUNT/DURATION", activity.routineActivityId);
 
     if (result.id) {
       setCount("");
@@ -49,7 +48,6 @@ const UpdateRoutineActivity = ({
       setSuccess(false);
     }
 
-    console.log("STARTING COUNT/DURATION UPDATE", activity.routineActivityId);
     const newActs = await fetchAllActivities();
     const newUserRous = await fetchMyRoutines();
     const newRous = await getPublicRoutines();
@@ -60,7 +58,7 @@ const UpdateRoutineActivity = ({
 
   return (
     <div>
-      <h1>Update the Activity</h1>
+      <h1>Update the count and duration of the current activity</h1>
 
       <form onSubmit={handleUpdatingCountDuration}>
         <input

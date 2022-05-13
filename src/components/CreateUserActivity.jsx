@@ -101,7 +101,7 @@ const CreateUserActivity = ({ routine, token, activity }) => {
 
   return (
     <div>
-      <h1>ADDING ACTIVITIES</h1>
+      <h1>Add any existing activity to your routine</h1>
       <div>
         <form onSubmit={handleSubmit}>
           <select value={activityId} onChange={handleAddingActivities}>
