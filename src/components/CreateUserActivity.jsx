@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   addActivityToRoutine,
   fetchAllActivities,
-  updateCountDuration,
   updateActivity,
-  deleteRoutineActivity,
   fetchMyRoutines,
   getPublicRoutines,
   updateRoutineActivity,
@@ -22,7 +20,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
   const [description, setDescription] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
   const [updateCount, setUpdateCount] = useState("");
-  const [activityRoutine, setActivityRoutine] = useState(0);
 
   useEffect(() => {
     async function getActivities() {
