@@ -165,6 +165,7 @@ export const deleteUserRoutine = async (routineId, token) => {
 };
 
 export const addActivityToRoutine = async (
+  token,
   activityId,
   routineId,
   count,
@@ -177,6 +178,7 @@ export const addActivityToRoutine = async (
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           activityId,
@@ -327,7 +329,7 @@ export const deleteRoutineActivity = async (routineActivityId, token) => {
       }
     );
     const data = await response.json();
-    console.log("ATTEMPTING TO DELETE FROM API", token);
+
     return data;
   } catch (error) {
     return error;

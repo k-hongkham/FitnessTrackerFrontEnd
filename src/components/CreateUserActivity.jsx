@@ -9,18 +9,25 @@ import {
 } from "../api";
 import { DeleteActivity } from "./";
 
-const CreateUserActivity = ({ routine, token, activity }) => {
+const CreateUserActivity = ({
+  routine,
+  token,
+  activity,
+  routines,
+  setRoutines,
+  username,
+}) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
-  const [userRoutines, setUserRoutines] = useState([]);
+  // const [userRoutines, setUserRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
   const [activityId, setActivityId] = useState(0);
   const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [updateDuration, setUpdateDuration] = useState("");
-  const [updateCount, setUpdateCount] = useState("");
+  // const [name, setName] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [updateDuration, setUpdateDuration] = useState("");
+  // const [updateCount, setUpdateCount] = useState("");
 
   useEffect(() => {
     async function getActivities() {
@@ -33,23 +40,25 @@ const CreateUserActivity = ({ routine, token, activity }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await addActivityToRoutine(
-      activityId,
-      routine.id,
-      count,
-      duration
-    );
-    console.log("what activity?", activityId);
-    console.log("what routine?", routine.id);
+    try {
+      const response = await addActivityToRoutine(
+        token,
+        activityId,
+        routine.id,
+        count,
+        duration
+      );
 
-    setSubmitted(true);
-
-    if (response.id) {
+      const allRoutines = await fetchMyRoutines(username, token);
+      setSuccess(true);
+      setSubmitted(true);
+      setRoutines(allRoutines);
+    } catch (error) {
+      console.error(error);
+      setSuccess(false);
+    } finally {
       setCount("");
       setDuration("");
-      setSuccess(true);
-    } else {
-      setSuccess(false);
     }
   };
 
@@ -63,38 +72,6 @@ const CreateUserActivity = ({ routine, token, activity }) => {
 
   const handleAddingActivities = (e) => {
     setActivityId(e.target.value);
-  };
-
-  const handleUpdatingCountDuration = async (e) => {
-    e.preventDefault();
-    const response = await updateActivity(
-      token,
-      activity.id,
-      name,
-      description
-    );
-
-    const result = await updateRoutineActivity(
-      activity.routineActivityId,
-      token,
-      updateCount,
-      updateDuration
-    );
-
-    if (result.id) {
-      setCount("");
-      setDuration("");
-      setSuccess(true);
-    } else {
-      setSuccess(false);
-    }
-
-    const newActs = await fetchAllActivities();
-    const newUserRous = await fetchMyRoutines();
-    const newRous = await getPublicRoutines();
-    setActivities(newActs);
-    // setRoutines(newRous);
-    setUserRoutines(newUserRous);
   };
 
   return (

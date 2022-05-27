@@ -41,7 +41,9 @@ const Profile = ({ username, token }) => {
                 <CreateUserActivity
                   routine={routine}
                   setRoutines={setRoutines}
+                  routines={routines}
                   token={token}
+                  username={username}
                 />
                 <div className="my_routine_activities">
                   {routine.activities && routine.activities.length
@@ -58,7 +60,9 @@ const Profile = ({ username, token }) => {
                             routine={routine}
                             token={token}
                             setActivities={setActivities}
+                            routines={routines}
                             setRoutines={setRoutines}
+                            username={username}
                           />
 
                           <DeleteActivity
@@ -67,6 +71,7 @@ const Profile = ({ username, token }) => {
                             routine={routine}
                             routines={routines}
                             setRoutines={setRoutines}
+                            username={username}
                           />
                         </div>
                       ))

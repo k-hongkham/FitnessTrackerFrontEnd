@@ -1,7 +1,7 @@
 import React from "react";
-import { deleteRoutineActivity } from "../api";
+import { deleteRoutineActivity, fetchMyRoutines } from "../api";
 
-const DeleteActivity = ({ activity, token }) => {
+const DeleteActivity = ({ activity, token, username, setRoutines }) => {
   const handleDeleteActivity = async (e) => {
     e.preventDefault();
     try {
@@ -10,7 +10,11 @@ const DeleteActivity = ({ activity, token }) => {
         token
       );
 
+      const allRoutines = await fetchMyRoutines(username, token);
+
+      setRoutines(allRoutines);
     } catch (error) {
+      console.error(error);
       return error;
     }
   };

@@ -1,24 +1,10 @@
 import React, { useState } from "react";
-import {
-  fetchAllActivities,
-  updateActivity,
-  fetchMyRoutines,
-  getPublicRoutines,
-  updateRoutineActivity,
-} from "../api";
+import { updateActivity, fetchMyRoutines, updateRoutineActivity } from "../api";
 
-const UpdateRoutineActivity = ({
-  token,
-  routine,
-  activity,
-  setActivities,
-  setRoutines,
-}) => {
+const UpdateRoutineActivity = ({ token, activity, setRoutines, username }) => {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
-  const [userRoutines, setUserRoutines] = useState([]);
   const [success, setSuccess] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [updateDuration, setUpdateDuration] = useState("");
@@ -40,6 +26,9 @@ const UpdateRoutineActivity = ({
       updateDuration
     );
 
+    const allRoutines = await fetchMyRoutines(username, token);
+    setRoutines(allRoutines);
+
     if (result.id) {
       setCount("");
       setDuration("");
@@ -47,13 +36,6 @@ const UpdateRoutineActivity = ({
     } else {
       setSuccess(false);
     }
-
-    const newActs = await fetchAllActivities();
-    const newUserRous = await fetchMyRoutines();
-    const newRous = await getPublicRoutines();
-    setActivities(newActs);
-    setRoutines(newRous);
-    setUserRoutines(newUserRous);
   };
 
   return (

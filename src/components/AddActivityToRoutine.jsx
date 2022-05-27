@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  addActivityToRoutine,
-  fetchAllActivities,
-  updateActivity,
-  fetchMyRoutines,
-  getPublicRoutines,
-  updateRoutineActivity,
-} from "../api";
+import { addActivityToRoutine } from "../api";
 import { DeleteActivity } from "./";
 
 const AddActivityToRoutine = ({ routine, activity }) => {
